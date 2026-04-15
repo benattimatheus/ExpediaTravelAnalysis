@@ -225,3 +225,6 @@ __marimo__/
 
 # Cache files
 .idea/**/caches/
+
+#Kaggle files
+.kaggle/**
