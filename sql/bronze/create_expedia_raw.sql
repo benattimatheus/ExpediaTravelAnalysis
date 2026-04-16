@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS expedia_raw
+                       (
+                            id INT PRIMARY KEY,
+                            date_time TIMESTAMP NOT NULL,
+                            site_name INT NOT NULL,
+                            posa_continent INT NOT NULL,
+                            user_location_country INT NOT NULL,
+                            user_location_region INT NOT NULL,
+                            user_location_city INT NOT NULL,
+                            orig_destination_distance INT NOT NULL,
+                            user_id INT NOT NULL,
+                            is_mobile INT NOT NULL,
+                            is_package INT NOT NULL,
+                            channel INT NOT NULL,
+                            srch_ci DATE NOT NULL,
+                            srch_co DATE NOT NULL,
+                            srch_adults_cnt INT NOT NULL,
+                            srch_children_cnt INT NOT NULL,
+                            srch_rm_cnt INT NOT NULL,
+                            srch_destination_id INT NOT NULL,
+                            srch_destination_type_id INT NOT NULL,
+                            is_booking INT NOT NULL,
+                            cnt INT NOT NULL,
+                            hotel_continent INT NOT NULL,
+                            hotel_country INT NOT NULL,
+                            hotel_market INT NOT NULL,
+                            hotel_cluster INT NOT NULL
+                       );
