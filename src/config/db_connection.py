@@ -1,13 +1,11 @@
 import psycopg2
 import os
-from dotenv import load_dotenv
 
 import logging
 
 logger = logging.getLogger(__name__)
 
 def get_connection():
-    load_dotenv()
     logger.info("Starting connection to database.")
 
     try:
