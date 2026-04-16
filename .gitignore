@@ -228,3 +228,6 @@ __marimo__/
 
 #Kaggle files
 .kaggle/**
+
+#Log file
+src/utils/logs/logs.txt

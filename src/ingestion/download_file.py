@@ -2,14 +2,15 @@ import os
 import sys
 from src.utils.auth_kaggle import AuthKaggle
 from src.utils.downloader_kaggle import KaggleRepository
-from src.utils.logger import logger
+import logging
 
+logger = logging.getLogger(__name__)
 
 def run_kaggle_download(base_dir, dataset_name, expected_file):
 
-    credentials_path = os.path.join(base_dir, ".kaggle", "kaggle.json")
+    #credentials_path = os.path.join(base_dir, ".kaggle", "kaggle.json")
     download_path = os.path.join(base_dir, "data", "raw")
-    dataset_path = os.path.join(download_path, expected_file)
+    #dataset_path = os.path.join(download_path, expected_file)
 
     logger.info("Starting Kaggle authentication.")
 

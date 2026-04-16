@@ -1,2 +1,4 @@
 
 kaggle
+python-dotenv
+psycopg2
