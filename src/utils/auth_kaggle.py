@@ -1,8 +1,8 @@
 import json
-import logging
 from kaggle.api.kaggle_api_extended import KaggleApi
+import logging
 
-logger = logging.getLogger("Data Analysis Project")
+logger = logging.getLogger(__name__)
 
 class AuthKaggle:
     def __init__(self):

@@ -2,7 +2,7 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 import os
 import logging
 
-logger = logging.getLogger("EDA_Project")
+logger = logging.getLogger(__name__)
 
 class KaggleRepository:
     def __init__(self, api: KaggleApi):
