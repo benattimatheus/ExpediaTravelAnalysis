@@ -2,3 +2,5 @@
 kaggle
 python-dotenv
 psycopg2
+sqlalchemy
+pandas

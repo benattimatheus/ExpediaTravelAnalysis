@@ -230,4 +230,4 @@ __marimo__/
 .kaggle/**
 
 #Log file
-src/utils/logs/logs.txt
+src/utils/logs/
