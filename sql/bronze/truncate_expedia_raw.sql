@@ -1,0 +1,1 @@
+TRUNCATE TABLE expedia_raw;
