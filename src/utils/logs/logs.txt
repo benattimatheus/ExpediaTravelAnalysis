@@ -14,3 +14,8 @@
 2026-04-15 19:07:47,133 - INFO - Authentication successful. Downloading dataset.
 2026-04-15 19:07:49,455 - INFO - Dataset jacopoferretti/expedia-travel-dataset downloaded successfully to C:\Users\mathe\OneDrive\Desktop\ExpediaTravelAnalysis\data\raw
 2026-04-15 19:07:49,456 - INFO - Download completed successfully.
+2026-04-16 00:16:44,331 - INFO - Starting Kaggle authentication.
+2026-04-16 00:16:44,331 - INFO - Successfully Authenticated!
+2026-04-16 00:16:44,332 - INFO - Authentication successful. Downloading dataset.
+2026-04-16 00:16:46,895 - INFO - Dataset jacopoferretti/expedia-travel-dataset downloaded successfully to C:\Users\mathe\OneDrive\Desktop\ExpediaTravelAnalysis\data\raw
+2026-04-16 00:16:46,895 - INFO - Download completed successfully.

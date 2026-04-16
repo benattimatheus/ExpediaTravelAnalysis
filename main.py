@@ -1,5 +1,5 @@
 import os
-from src.pipeline.download_file import run_kaggle_download
+from src.ingestion.download_file import run_kaggle_download
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
