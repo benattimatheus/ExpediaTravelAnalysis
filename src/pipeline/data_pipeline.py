@@ -11,8 +11,8 @@ class DataPipeline:
     def run_truncate(self):
         run_sql_file(self.conn, "sql/bronze/truncate_expedia_raw.sql")
 
-    # def run_silver(self):
-    #    run_sql_file(self.conn, "sql/silver/create_expedia_clean.sql")
+    def run_silver(self):
+        run_sql_file(self.conn, "sql/silver/create_expedia_silver.sql")
     #
     # def run_gold(self):
     #    run_sql_file(self.conn, "sql/gold/create_fact_user_behavior.sql")
@@ -23,6 +23,6 @@ class DataPipeline:
     def run_all(self):
         self.run_bronze()
         self.run_truncate()
-        #    self.run_silver()
-        #    self.run_gold()
         self.run_ingestion()
+        self.run_silver()
+        #    self.run_gold()
