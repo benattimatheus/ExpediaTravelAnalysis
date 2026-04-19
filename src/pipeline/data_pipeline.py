@@ -13,9 +13,9 @@ class DataPipeline:
 
     def run_silver(self):
         run_sql_file(self.conn, "sql/silver/create_expedia_silver.sql")
-    #
-    # def run_gold(self):
-    #    run_sql_file(self.conn, "sql/gold/create_fact_user_behavior.sql")
+
+    def run_gold(self):
+        run_sql_file(self.conn, "sql/gold/conversion.sql")
 
     def run_ingestion(self):
         read_and_insert_data_from_csv(self.conn, "data/raw/travel.csv")
@@ -25,4 +25,4 @@ class DataPipeline:
         self.run_truncate()
         self.run_ingestion()
         self.run_silver()
-        #    self.run_gold()
+        self.run_gold()
