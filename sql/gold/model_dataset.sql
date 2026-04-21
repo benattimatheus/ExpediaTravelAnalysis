@@ -23,6 +23,30 @@ SELECT
     s.srch_destination_type_id,
 
     s.orig_destination_distance,
+    CASE
+        WHEN s.orig_destination_distance < 0 THEN 'unknown'
+        WHEN s.orig_destination_distance < 100 THEN 'near'
+        WHEN s.orig_destination_distance < 1000 THEN 'medium'
+        ELSE 'far'
+    END AS distance_group,
+
+    CASE
+        WHEN s.orig_destination_distance < 0 THEN 1
+        ELSE 0
+    END AS is_distance_unknown,
+
+    CASE
+        WHEN s.orig_destination_distance < 0 THEN NULL
+        ELSE s.orig_destination_distance
+    END AS distance_clean,
+
+    CASE
+        WHEN s.orig_destination_distance < 0 AND s.is_mobile = 1 THEN 'unknown_mobile'
+        WHEN s.orig_destination_distance < 0 THEN 'unknown_desktop'
+        WHEN s.orig_destination_distance < 100 THEN 'near'
+        WHEN s.orig_destination_distance < 1000 THEN 'medium'
+        ELSE 'far'
+    END AS distance_behavior_group,
 
     ub.booking_rate AS user_booking_rate,
     ub.avg_session_intensity,
