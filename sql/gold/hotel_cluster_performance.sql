@@ -14,6 +14,6 @@ WHERE hotel_cluster IS NOT NULL
 
 GROUP BY hotel_cluster
 
-HAVING COUNT(*) > 50
+--HAVING COUNT(*) > 50
 
 ORDER BY booking_rate DESC;

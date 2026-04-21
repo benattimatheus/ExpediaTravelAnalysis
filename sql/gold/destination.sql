@@ -15,6 +15,6 @@ GROUP BY
     srch_destination_id,
     srch_destination_type_id
 
-HAVING COUNT(*) > 50
+--HAVING COUNT(*) > 50
 
 ORDER BY booking_rate DESC;
