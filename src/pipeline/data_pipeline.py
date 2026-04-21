@@ -19,9 +19,9 @@ class DataPipeline:
         run_sql_file(self.conn, "sql/gold/booking_window.sql")
         run_sql_file(self.conn, "sql/gold/destination.sql")
         run_sql_file(self.conn, "sql/gold/distance.sql")
-        run_sql_file(self.conn, "sql/gold/model_dataset.sql")
         run_sql_file(self.conn, "sql/gold/hotel_cluster_performance.sql")
         run_sql_file(self.conn, "sql/gold/user_behavior.sql")
+        run_sql_file(self.conn, "sql/gold/model_dataset.sql")
 
     def run_ingestion(self):
         read_and_insert_data_from_csv(self.conn, "data/raw/travel.csv")
