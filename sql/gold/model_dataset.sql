@@ -2,36 +2,56 @@ DROP TABLE IF EXISTS gold_model_dataset;
 
 CREATE TABLE gold_model_dataset AS
 SELECT
-    user_id,
+    s.user_id,
 
-    is_mobile,
-    is_package,
-    channel,
-    cnt,
+    s.is_mobile,
+    s.is_package,
+    s.channel,
+    s.cnt,
 
-    trip_type,
-    is_family_trip,
-    is_multi_room,
-    total_guests,
+    s.trip_type,
+    s.is_family_trip,
+    s.is_multi_room,
+    s.total_guests,
 
-    stay_duration,
-    advance_booking_days,
+    s.stay_duration,
+    s.advance_booking_days,
 
-    user_location_country,
-    hotel_country,
-    srch_destination_id,
-    srch_destination_type_id,
+    s.user_location_country,
+    s.hotel_country,
+    s.srch_destination_id,
+    s.srch_destination_type_id,
 
-    orig_destination_distance,
+    s.orig_destination_distance,
 
-    hotel_cluster,
+    ub.booking_rate AS user_booking_rate,
+    ub.avg_session_intensity,
+    ub.avg_stay_duration,
+    ub.avg_advance_booking_days,
+    ub.mobile_usage_rate,
 
-    is_booking
+    dp.booking_rate AS destination_booking_rate,
+    dp.total_events AS destination_popularity,
 
-FROM public.expedia_silver
+    hc.booking_rate AS cluster_booking_rate,
+    hc.total_events AS cluster_popularity,
+
+    s.hotel_cluster,
+    s.is_booking
+
+FROM public.expedia_silver s
+
+LEFT JOIN gold_user_behavior ub
+    ON s.user_id = ub.user_id
+
+LEFT JOIN gold_destination_performance dp
+    ON s.srch_destination_id = dp.srch_destination_id
+
+LEFT JOIN gold_hotel_cluster_performance hc
+    ON s.hotel_cluster = hc.hotel_cluster
 
 WHERE
-    user_id IS NOT NULL
-    AND hotel_cluster IS NOT NULL
-    AND stay_duration > 0
-    AND advance_booking_days >= 0;
+    s.user_id IS NOT NULL
+    AND s.hotel_cluster IS NOT NULL
+    AND s.stay_duration > 0
+    AND s.advance_booking_days >= 0;
