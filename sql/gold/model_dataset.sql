@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS gold_model_dataset;
 
 CREATE TABLE gold_model_dataset AS
 SELECT
+    s.date_time,
     s.user_id,
 
     s.is_mobile,
@@ -54,11 +55,11 @@ SELECT
     ub.avg_advance_booking_days,
     ub.mobile_usage_rate,
 
-    dp.booking_rate AS destination_booking_rate,
+    --dp.booking_rate AS destination_booking_rate,
     dp.total_events AS destination_popularity,
 
-    hc.booking_rate AS cluster_booking_rate,
-    hc.total_events AS cluster_popularity,
+    --hc.booking_rate AS cluster_booking_rate,
+    --hc.total_events AS cluster_popularity,
 
     s.hotel_cluster,
     s.is_booking

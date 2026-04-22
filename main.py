@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 from src.ingestion.download_file import run_kaggle_download
-from src.config.db_connection import get_connection
+from src.config.db_connection import get_connection, connect_to_db
 from src.utils.logger import setup_logger
 from src.pipeline.data_pipeline import DataPipeline
 
@@ -18,13 +18,16 @@ def main():
 
     run_kaggle_download(base_dir, dataset_name, expected_file)
 
-    conn = get_connection()
+    conn = get_connection()      # psycopg2
+    engine = connect_to_db()     # sqlalchemy
 
     try:
-        pipeline = DataPipeline(conn)
-        pipeline.run_all()
+        pipeline = DataPipeline(conn, engine)
+        results = pipeline.run_all()
+        print(results)
     finally:
         conn.close()
+        engine.dispose()
 
 
 if __name__ == "__main__":
