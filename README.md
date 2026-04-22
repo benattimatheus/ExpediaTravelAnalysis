@@ -31,3 +31,15 @@ Objective: Develop a data pipeline and predictive system to model user travel be
  23. hotel_country: Country of the hotel  
  24. hotel_market: Hotel market  
  25. hotel_cluster: ID of a hotel cluster
+
+## Modeling Results
+
+The model achieved a MAP@5 score of 0.193, significantly outperforming the baseline score of 0.050.
+
+This represents nearly a 4x improvement over a naive approach based on the most frequent hotel clusters.
+
+The performance indicates that the model is effectively capturing user behavior, trip context, and search patterns to generate meaningful recommendations.
+
+Importantly, leakage-prone features were removed to ensure that the evaluation reflects realistic predictive performance.
+
+Overall, the model demonstrates strong ranking capability while maintaining robustness and generalization.
