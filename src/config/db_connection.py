@@ -1,8 +1,10 @@
 import psycopg2
 import os
-
+from sqlalchemy import create_engine
+from dotenv import load_dotenv
 import logging
 
+load_dotenv()
 logger = logging.getLogger(__name__)
 
 def get_connection():
@@ -43,3 +45,22 @@ def run_sql_file(conn, path):
 
     finally:
         cur.close()
+
+def connect_to_db():
+    logger.info("Creating database engine.")
+
+    try:
+        engine = create_engine(
+            f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@"
+            f"{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}",
+            pool_pre_ping=True
+        )
+
+        with engine.connect() as conn:
+            logger.info("Successfully connected to database.")
+
+        return engine
+
+    except Exception as e:
+        logger.error(f"Database connection failed: {e}")
+        raise
