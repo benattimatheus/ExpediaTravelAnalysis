@@ -20,6 +20,6 @@ WHERE advance_booking_days IS NOT NULL
 
 GROUP BY booking_window
 
-HAVING COUNT(*) > 50
+--HAVING COUNT(*) > 50
 
 ORDER BY booking_rate DESC;

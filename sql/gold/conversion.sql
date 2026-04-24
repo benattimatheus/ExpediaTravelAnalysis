@@ -19,6 +19,6 @@ GROUP BY
     trip_type,
     is_package
 
-HAVING COUNT(*) > 50
+--HAVING COUNT(*) > 50
 
 ORDER BY booking_rate DESC;

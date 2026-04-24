@@ -17,6 +17,6 @@ FROM public.expedia_silver
 
 GROUP BY distance_group
 
-HAVING COUNT(*) > 50
+--HAVING COUNT(*) > 50
 
 ORDER BY booking_rate DESC;
