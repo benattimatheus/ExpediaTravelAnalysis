@@ -1,45 +1,167 @@
-# Welcome to Expedia Dataset Analysis!
+# Expedia Travel Analysis & Recommendation System
 
-This project focuses on analyzing the Expedia Travel Dataset, which was made available by Jacopo Ferretti on Kaggle (https://www.kaggle.com/datasets/jacopoferretti/expedia-travel-dataset)
+## Overview
 
-Objective: Develop a data pipeline and predictive system to model user travel behavior, identify drivers of booking conversion, and recommend hotel clusters based on search context and user profile.
+This project builds an end-to-end data platform to analyze user behavior
+in the travel industry, identify drivers of booking conversion, and
+recommend hotel clusters based on search context and user profile.
 
-# Columns meaning
+The solution combines data engineering, analytics, machine learning, and
+business intelligence to support data-driven decision-making for
+marketing and product teams.
 
- 1. id: Data ID
- 2. date_time: Timestamp  
- 3. site_name: ID of the Expedia point of sale 
- 4. posa_continent: ID of continent associated with site_name  
- 5. user_location_country: ID of the country the customer is located 
- 6. user_location_region: ID of the region the customer is located  
- 7. user_location_city: ID of the city the customer is located  
- 8. orig_destination_distance: Physical distance between hotel and customer at the time of search 
- 9. user_id: Customer ID  
- 10. is_mobile: 1 if the user connected from mobile, 0 otherwise  
- 11. is_package: 1 if the click/booking was generated as part of a package, 0 otherwise   
- 12. channel: ID of marketing channel  
- 13. srch_ci: Checkin date  
- 14. srch_co: Checkout date  
- 15. srch_adults_cnt: Number of adults in the hotel room  
- 16. srch_children_cnt: Number of children in the hotel room  
- 17. srch_rm_cnt: Number of hotel rooms in the search  
- 18. srch_destination_id: ID of the destination  
- 19. srch_destination_type_id: Type of destination  
- 20. is_booking: 1 if booking, 0 if click  
- 21. cnt: Number of similar events in the context of the same user session  
- 22. hotel_continent: Continent of the hotel  
- 23. hotel_country: Country of the hotel  
- 24. hotel_market: Hotel market  
- 25. hotel_cluster: ID of a hotel cluster
+------------------------------------------------------------------------
 
-## Modeling Results
+## Objectives
 
-The model achieved a MAP@5 score of 0.193, significantly outperforming the baseline score of 0.050.
+-   Understand key factors that influence booking conversion
+-   Analyze user behavior across devices and booking contexts
+-   Identify high-impact opportunities to improve conversion rates
+-   Build a recommendation system for hotel clusters
+-   Deliver actionable insights through an interactive dashboard
 
-This represents nearly a 4x improvement over a naive approach based on the most frequent hotel clusters.
+------------------------------------------------------------------------
 
-The performance indicates that the model is effectively capturing user behavior, trip context, and search patterns to generate meaningful recommendations.
+## Dataset
 
-Importantly, leakage-prone features were removed to ensure that the evaluation reflects realistic predictive performance.
+-   Source: Expedia Travel Dataset (https://www.kaggle.com/datasets/jacopoferretti/expedia-travel-dataset)
+-   Granularity: Event-level user interactions
 
-Overall, the model demonstrates strong ranking capability while maintaining robustness and generalization.
+The dataset includes user behavior, trip characteristics, marketing
+channels, and hotel metadata.
+
+------------------------------------------------------------------------
+
+## Data Architecture
+
+### Bronze Layer
+
+-   Raw ingestion from Kaggle
+-   1:1 structure with source data
+-   No transformations
+
+------------------------------------------------------------------------
+
+### Silver Layer (Data Cleaning & Feature Engineering)
+
+Key transformations:
+
+-   stay_duration
+-   advance_booking_days
+-   trip_type (solo / family / group)
+-   is_family_trip
+-   total_guests
+-   is_multi_room
+
+------------------------------------------------------------------------
+
+### Gold Layer (Business Aggregations)
+
+Pre-aggregated datasets for analytics:
+
+-   Conversion analysis
+-   Booking window segmentation
+-   User behavior profiling
+-   Destination and cluster performance
+
+------------------------------------------------------------------------
+
+## Data Quality
+
+-   Removed invalid booking windows (negative values)
+-   Handled missing distance values
+-   Applied minimum volume filters for reliable analysis
+-   Ensured consistency across derived features
+
+------------------------------------------------------------------------
+
+## Analytical Approach
+
+Conversion rate: AVG(is_booking)
+
+Opportunity definition: Volume \* (Conversion Overall - Segment
+Conversion)
+
+Focus: high-volume segments performing below the average.
+
+------------------------------------------------------------------------
+
+## Dashboard Structure (Tableau)
+
+### Overview
+
+-   High-level performance metrics
+-   Conversion rate by device and channel
+-   Identification of key performance gaps (e.g., mobile)
+-   See here (https://public.tableau.com/app/profile/matheus.benatti/viz/ExpediaTravel/Opportunities?publish=yes)
+
+------------------------------------------------------------------------
+
+### User & Offer
+
+-   Analysis of user intent and booking context
+-   Segments:
+    -   Booking window
+    -   Package vs non-package
+    -   Trip type
+
+------------------------------------------------------------------------
+
+### Opportunities
+
+-   Identification of high-impact segments
+-   Ranking based on volume and conversion gap
+
+------------------------------------------------------------------------
+
+## Key Insights
+
+-   Conversion remains low (\~8%), with mobile significantly
+    underperforming
+-   High-intent users (last-minute) convert up to 2x more
+-   Non-package bookings show higher conversion
+-   Solo travelers convert more efficiently
+-   High-volume segments with below-average conversion represent the
+    biggest opportunity
+
+------------------------------------------------------------------------
+
+## Business Recommendations
+
+-   Improve mobile booking experience
+-   Simplify package offerings
+-   Focus on high-traffic segments
+-   Use top-performing clusters as benchmarks
+
+------------------------------------------------------------------------
+
+## Machine Learning Model
+
+Objective: Predict most likely hotel_cluster
+
+Performance: - MAP@5: 0.193 - Baseline: 0.050
+
+\~4x improvement over naive approach
+
+------------------------------------------------------------------------
+
+## Tech Stack
+
+-   Python (pandas, scikit-learn, LightGBM)
+-   SQL (PostgreSQL)
+-   Tableau
+-   FastAPI
+
+------------------------------------------------------------------------
+
+## Project Structure
+
+data/ sql/ src/ dashboards/ notebooks/
+
+------------------------------------------------------------------------
+
+## Limitations
+
+-   No pricing or deep intent signals
+-   Aggregated analysis may hide user-level patterns
+-   Some segments affected by sample size
